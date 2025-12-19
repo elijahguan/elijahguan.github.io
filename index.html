@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elijah Guan | Portfolio</title>
+    <!-- Importing a nice font (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- 1. Global Styles --- */
+        :root {
+            --bg-color: #0f172a;       /* Dark Navy Background */
+            --card-bg: #1e293b;        /* Lighter Navy Card */
+            --text-primary: #f8fafc;   /* White Text */
+            --text-secondary: #94a3b8; /* Gray Text */
+            --accent: #38bdf8;         /* Light Blue Accent */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* --- 2. Header Section --- */
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+        }
+
+        /* --- 3. The Grid Layout (The Magic Part) --- */
+        .project-grid {
+            display: grid;
+            /* Auto-fit creates columns automatically based on width */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        /* --- 4. The Project Cards --- */
+        .project-card {
+            background-color: var(--card-bg);
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 25px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Hover Effect: Lifts up slightly */
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border-color: var(--accent);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .folder-icon {
+            font-size: 24px;
+            color: var(--accent);
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0 0 10px 0;
+            color: var(--text-primary);
+        }
+
+        .project-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            flex-grow: 1; /* Pushes the tags to the bottom */
+        }
+
+        /* --- 5. Tags (e.g., Python, AWS) --- */
+        .tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: auto; /* Ensures tags stick to bottom */
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            color: var(--accent);
+            background-color: rgba(56, 189, 248, 0.1);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        /* Link Wrapper to make whole card clickable */
+        a.card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Header -->
+        <header>
+            <h1>Elijah Guan</h1>
+            <div class="subtitle">Cloud Engineer & Network Security Student</div>
+        </header>
+
+        <!-- Project Grid -->
+        <div class="project-grid">
+
+            <!-- Card 1: AWS Project -->
+            <!-- Note: Replace href with your actual repo link -->
+            <a href="https://github.com/elijahguan/aws-ec2-deployment" class="card-link">
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="folder-icon">☁️</span>
+                    </div>
+                    <h3 class="project-title">AWS Web Server Deployment</h3>
+                    <p class="project-desc">
+                        Deployed a secure Linux web server using AWS EC2. Configured custom Security Groups, managed SSH keys, and hardened file permissions.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">AWS EC2</span>
+                        <span class="tag">Linux</span>
+                        <span class="tag">Network Security</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Card 2: Python Project (Example) -->
+            <a href="#" class="card-link">
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="folder-icon">🐍</span>
+                    </div>
+                    <h3 class="project-title">Network Port Scanner</h3>
+                    <p class="project-desc">
+                        A Python script that scans target IP addresses for open ports. Uses socket programming to detect vulnerabilities in local networks.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Sockets</span>
+                        <span class="tag">Cybersecurity</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Card 3: Another Project -->
+            <a href="#" class="card-link">
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="folder-icon">🛡️</span>
+                    </div>
+                    <h3 class="project-title">Home Lab Setup</h3>
+                    <p class="project-desc">
+                        configured a virtual lab environment using VirtualBox to simulate Active Directory attacks and defense mechanisms.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">VirtualBox</span>
+                        <span class="tag">Active Directory</span>
+                    </div>
+                </div>
+            </a>
+            
+             <!-- Card 4: Future Project Placeholder -->
+             <a href="#" class="card-link">
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="folder-icon">📝</span>
+                    </div>
+                    <h3 class="project-title">Network+ Study Notes</h3>
+                    <p class="project-desc">
+                        Comprehensive documentation of networking protocols, subnetting cheat sheets, and OSI model diagrams.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Documentation</span>
+                        <span class="tag">Networking</span>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+</body>
+</html>
