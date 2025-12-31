@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elijah Guan | Portfolio</title>
-    <!-- Importing a nice font (Inter) -->
+    <title>Elijah Guan | Security Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         /* --- 1. Global Styles --- */
@@ -14,6 +13,7 @@
             --text-primary: #f8fafc;   /* White Text */
             --text-secondary: #94a3b8; /* Gray Text */
             --accent: #38bdf8;         /* Light Blue Accent */
+            --accent-hover: #818cf8;   /* Purple-ish hover state */
         }
 
         body {
@@ -31,15 +31,22 @@
             padding: 40px 20px;
         }
 
-        /* --- 2. Header Section --- */
+        /* --- 2. Header & Navigation --- */
         header {
-            text-align: center;
+            display: flex;
+            justify-content: space-between; /* Pushes Name to left, Nav to right */
+            align-items: center;
             margin-bottom: 60px;
+            padding: 20px 0;
+        }
+
+        .header-content {
+            text-align: left;
         }
 
         h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
+            font-size: 2.5rem;
+            margin: 0;
             background: linear-gradient(to right, #38bdf8, #818cf8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -47,14 +54,50 @@
 
         .subtitle {
             color: var(--text-secondary);
-            font-size: 1.2rem;
+            font-size: 1rem;
+            margin-top: 5px;
         }
 
-        /* --- 3. The Grid Layout (The Magic Part) --- */
+        /* Navigation Bar Styles */
+        .navbar {
+            display: flex;
+            gap: 30px; /* Space between links */
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        /* Underline animation on hover */
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* --- 3. The Grid Layout --- */
         .project-grid {
             display: grid;
             /* Auto-fit creates columns automatically based on width */
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 25px;
         }
 
@@ -64,13 +107,13 @@
             border: 1px solid #334155;
             border-radius: 12px;
             padding: 25px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            height: 100%; /* Ensures cards are equal height in a row */
         }
 
-        /* Hover Effect: Lifts up slightly */
         .project-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.3);
@@ -86,7 +129,7 @@
 
         .folder-icon {
             font-size: 24px;
-            color: var(--accent);
+            /* No color set here so emoji keeps its color, or use var(--accent) for icons */
         }
 
         .project-title {
@@ -108,7 +151,7 @@
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
-            margin-top: auto; /* Ensures tags stick to bottom */
+            margin-top: auto;
         }
 
         .tag {
@@ -125,108 +168,111 @@
             text-decoration: none;
             color: inherit;
             display: block;
+            height: 100%;
         }
 
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            .header-content {
+                text-align: center;
+            }
+            .navbar {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+            }
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
         
-        <!-- Header -->
         <header>
-            <h1>Elijah Guan</h1>
-            <div class="subtitle">Cloud Engineer & Network Security Student</div>
+            <div class="header-content">
+                <h1>Elijah Guan</h1>
+                <div class="subtitle">Cloud Engineer & Network Security Student</div>
+            </div>
+
+            <nav class="navbar">
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="research.html" class="nav-link">Research</a>
+                <a href="writeups.html" class="nav-link">CTF Writeups</a>
+                <a href="notes.html" class="nav-link">Study Notes</a>
+                <a href="resume.pdf" class="nav-link" target="_blank">Resume</a>
+            </nav>
         </header>
 
-        <!-- Project Grid -->
-        <div class="project-grid">
+        <div class="project-grid" id="projects">
 
-            <!-- Card 1: AWS Project -->
-            <!-- Note: Replace href with your actual repo link -->
-            <a href="https://github.com/elijahguan/aws-ec2-deployment" class="card-link">
-                <div class="project-card">
-                    <div class="card-header">
-                        <span class="folder-icon">☁️</span>
-                    </div>
-                    <h3 class="project-title">AWS Web Server Deployment</h3>
-                    <p class="project-desc">
-                        Deployed a secure Linux web server using AWS EC2. Configured custom Security Groups, managed SSH keys, and hardened file permissions.
-                    </p>
-                    <div class="tags">
-                        <span class="tag">AWS EC2</span>
-                        <span class="tag">Linux</span>
-                        <span class="tag">Network Security</span>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Card 2: Python Project (Example) -->
-            <a href="#" class="card-link">
-                <div class="project-card">
-                    <div class="card-header">
-                        <span class="folder-icon">🐍</span>
-                    </div>
-                    <h3 class="project-title">Network Port Scanner</h3>
-                    <p class="project-desc">
-                        A Python script that scans target IP addresses for open ports. Uses socket programming to detect vulnerabilities in local networks.
-                    </p>
-                    <div class="tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">Sockets</span>
-                        <span class="tag">Cybersecurity</span>
-                    </div>
-                </div>
-            </a>
-            
-            <!-- Card 3: PhishGuardian (Example) -->
             <a href="https://github.com/elijahguan/Phish-Guardian" class="card-link">
                 <div class="project-card">
                     <div class="card-header">
                         <span class="folder-icon">🛡️</span>
                     </div>
-                    <h3 class="project-title">Phish Guardian</h3>
+                    <h3 class="project-title">PhishGuardian</h3>
                     <p class="project-desc">
-                        A Streamlit website that uses Gemini API to give a safety score on emails. Takes in direct copy paste or .txt/.eml uploads.
+                        A hybrid AI scanner that analyzes emails for phishing attempts. Combines linguistics-based syntax analysis with the Gemini API to detect urgency and semantic manipulation.
                     </p>
                     <div class="tags">
                         <span class="tag">Python</span>
-                        <span class="tag">Web Safety</span>
-                        <span class="tag">Cybersecurity</span>
+                        <span class="tag">Gemini API</span>
+                        <span class="tag">NLP</span>
                     </div>
                 </div>
             </a>
 
-            <!-- Card 3: Another Project -->
+            <a href="https://github.com/elijahguan/cloud-honeypot" class="card-link">
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="folder-icon">☁️</span>
+                    </div>
+                    <h3 class="project-title">AWS Cowrie Honeypot</h3>
+                    <p class="project-desc">
+                        Deployed a high-interaction SSH honeypot on AWS EC2. Configured security groups and logging to map global brute-force attacks and capture attacker payloads.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">AWS</span>
+                        <span class="tag">Linux Hardening</span>
+                        <span class="tag">Threat Intel</span>
+                    </div>
+                </div>
+            </a>
+
             <a href="#" class="card-link">
                 <div class="project-card">
                     <div class="card-header">
-                        <span class="folder-icon">🛡️</span>
+                        <span class="folder-icon">🏠</span>
                     </div>
-                    <h3 class="project-title">Home Lab Setup</h3>
+                    <h3 class="project-title">Hybrid Homelab & VPN</h3>
                     <p class="project-desc">
-                        configured a virtual lab environment using VirtualBox to simulate Active Directory attacks and defense mechanisms.
+                        Integrated local virtual machines with cloud infrastructure. Configured a WireGuard VPN to securely tunnel traffic between a home subnet and an AWS VPC.
                     </p>
                     <div class="tags">
+                        <span class="tag">Networking</span>
+                        <span class="tag">WireGuard</span>
                         <span class="tag">VirtualBox</span>
-                        <span class="tag">Active Directory</span>
                     </div>
                 </div>
             </a>
             
-             <!-- Card 4: Future Project Placeholder -->
-             <a href="#" class="card-link">
+            <a href="notes.html" class="card-link">
                 <div class="project-card">
                     <div class="card-header">
                         <span class="folder-icon">📝</span>
                     </div>
-                    <h3 class="project-title">Network+ Study Notes</h3>
+                    <h3 class="project-title">Network+ Cheatsheets</h3>
                     <p class="project-desc">
-                        Comprehensive documentation of networking protocols, subnetting cheat sheets, and OSI model diagrams.
+                        My personal documentation for the CompTIA Network+ exam. Includes breakdowns of the OSI model, subnetting tables, and common port lists.
                     </p>
                     <div class="tags">
                         <span class="tag">Documentation</span>
-                        <span class="tag">Networking</span>
+                        <span class="tag">Study Notes</span>
                     </div>
                 </div>
             </a>
